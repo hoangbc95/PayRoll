@@ -1,5 +1,6 @@
 ﻿using System;
 using PayRoll.FileUtilities;
+using PayRoll.Employees;
 
 namespace PayRoll
 {
@@ -9,7 +10,7 @@ namespace PayRoll
         {
             try
             {
-                var fileReader = new CsvUtilities();
+                var fileReader = new CsvUtilities<Employee, EmployeeMap>();
                 var employees = fileReader.ReadFile(@"CsvTemplates\employee.csv");
                 foreach (var employee in employees)
                 {

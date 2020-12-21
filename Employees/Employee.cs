@@ -1,7 +1,5 @@
 ﻿using System;
 using PayRoll.Salary;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PayRoll.Employees
 {

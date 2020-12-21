@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using PayRoll.Employees;
+using CsvHelper.Configuration;
 
 namespace PayRoll.FileUtilities
 {
-    interface IFileUtilitties
+    interface IFileUtilitties<TModel, TMap> where TMap : ClassMap<TModel>, new()
     {
-        List<Employee> ReadFile(string path);
+        List<TModel> ReadFile(string path);
     }
 }

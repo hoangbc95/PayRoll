@@ -4,22 +4,22 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
-using PayRoll.Employees;
+using CsvHelper.Configuration;
 
 namespace PayRoll.FileUtilities
 {
-    class CsvUtilities : IFileUtilitties
+    class CsvUtilities<TModel, TMap> : IFileUtilitties<TModel, TMap> where TMap : ClassMap<TModel>, new()
     {
-        public List<Employee> ReadFile(string path)
+        public List<TModel> ReadFile(string path)
         {
             try
             {
-                var records = new List<Employee>();
+                var records = new List<TModel>();
                 using (var reader = new StreamReader(path))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    csv.Configuration.RegisterClassMap<EmployeeMap>();
-                    records = csv.GetRecords<Employee>().ToList();
+                    csv.Configuration.RegisterClassMap<TMap>();
+                    records = csv.GetRecords<TModel>().ToList();
                 }
 
                 return records;
